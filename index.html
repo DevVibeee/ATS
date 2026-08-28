@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Defensive polyfill for environments where window.fetch has only a getter
+      (function() {
+        try {
+          var nativeFetch = window.fetch;
+          var _fetch = nativeFetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() { return _fetch; },
+            set: function(val) { _fetch = val; },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {}
+
+        // Suppress expected Vite HMR WebSocket closure events in sandboxed preview
+        window.addEventListener('unhandledrejection', function(event) {
+          if (
+            event &&
+            event.reason &&
+            (
+              (typeof event.reason.message === 'string' && event.reason.message.includes('WebSocket closed without opened')) ||
+              (typeof event.reason === 'string' && event.reason.includes('WebSocket closed without opened'))
+            )
+          ) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+          }
+        });
+      })();
+    </script>
+    <title>Remix ATS Resume Parser &amp; Skill Gap SaaS</title>
+    <meta name="description" content="AI-powered ATS resume parsing, semantic job matching, skill gap analysis, and candidate evaluation system with Student and Recruiter RBAC." />
+    <meta property="og:title" content="Remix ATS Resume Parser &amp; Skill Gap SaaS" />
+    <meta property="og:description" content="AI-powered ATS resume parsing, semantic job matching, skill gap analysis, and candidate evaluation system with Student and Recruiter RBAC." />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

@@ -1,0 +1,8 @@
+{
+  "name": "Remix ATS Resume Parser \u0026 Skill Gap SaaS",
+  "description": "AI-powered ATS resume parsing, semantic job matching, skill gap analysis, and candidate evaluation system with Student and Recruiter RBAC.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
